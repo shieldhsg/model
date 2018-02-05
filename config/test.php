@@ -8,7 +8,7 @@ $db = require __DIR__ . '/test_db.php';
 return [
     'id' => 'basic-tests',
     'basePath' => dirname(__DIR__),
-    'vendorPath'=>__DIR__ . '/../../hsg.vendors/vendor/',
+    'vendorPath'=>__DIR__ . '/../../hsg.vendor/vendor/',
     'aliases' => [
         '@bower' => '@vendor/bower-asset',
         '@npm'   => '@vendor/npm-asset',
