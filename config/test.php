@@ -12,6 +12,7 @@ return [
     'aliases' => [
         '@bower' => '@vendor/bower-asset',
         '@npm'   => '@vendor/npm-asset',
+        '@mdm/admin' => '@vendor/mdmsoft/yii2-admin',
     ],  
     'language' => 'en-US',
     'components' => [
@@ -38,7 +39,7 @@ return [
             ]
         ],
         'user' => [
-            'identityClass' => 'app\models\UserBackend',
+            'identityClass' => 'app\models\User',
             'enableAutoLogin'=> true
         ],        
         'request' => [
@@ -54,6 +55,17 @@ return [
         'tool' => [
             'class'=>'app\components\Tools',
             'property'=>'123'
+        ],
+        'authManager'=>[
+            "class"=>'yii\rbac\DbManager'
+        ]
+    ],
+    'as access' => [
+        'class' => 'mdm\admin\components\AccessControl',
+        'allowActions' => [
+            //这里是允许访问的action，不受权限控制
+            //controller/action
+            '*'
         ]
     ],
     'params' => $params,
@@ -61,7 +73,10 @@ return [
     'modules' =>[
         'gii'=> ['class' => 'yii\gii\Module',
         'allowedIPs' => ['*.*.*.*','127.0.0.1', '::1'],
-            ]
+            ],
+        'admin' => [
+    'class' => 'mdm\admin\Module',
+],
     ]
 ];
 

@@ -2,10 +2,10 @@
 
 namespace app\controllers;
 
-use mdm\admin\models\form\Signup;
+use app\models\SignupForm;
+use app\models\User;
 use Yii;
-use app\models\UserBackend;
-use app\models\UserBackendSearch;
+use app\models\UserSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
@@ -36,7 +36,7 @@ class UserController extends Controller
      */
     public function actionIndex()
     {
-        $searchModel = new UserBackendSearch();
+        $searchModel = new UserSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
         return $this->render('index', [
@@ -45,9 +45,9 @@ class UserController extends Controller
         ]);
     }
 
-    public function signup()
+    public function actionSignup()
     {
-        $model = new Signup();
+        $model = new SignupForm();
         if($model->load(Yii::$app->request->post()) && $model->signup()){
             return $this->redirect('index');
         }
@@ -74,7 +74,7 @@ class UserController extends Controller
      */
     public function actionCreate()
     {
-        $model = new UserBackend();
+        $model = new User();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id]);

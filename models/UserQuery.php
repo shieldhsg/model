@@ -7,7 +7,7 @@ namespace app\models;
  *
  * @see UserBackend
  */
-class UserBackendQuery extends \yii\db\ActiveQuery
+class UserQuery extends \yii\db\ActiveQuery
 {
     /*public function active()
     {
