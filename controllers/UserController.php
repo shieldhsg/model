@@ -5,7 +5,7 @@ namespace app\controllers;
 use app\models\SignupForm;
 use app\models\User;
 use Yii;
-use app\models\UserSearch;
+use app\models\search\UserSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;

@@ -2,10 +2,11 @@
 
 namespace app\models;
 
+use app\models\query\ArticlesQuery;
 use Yii;
 
 /**
- * This is the model class for table "articles".
+ * This is the model class for table "{{%articles}}".
  *
  * @property int $id 非业务主键
  * @property int $module_id 属于哪个模块
@@ -23,7 +24,7 @@ class Articles extends \yii\db\ActiveRecord
      */
     public static function tableName()
     {
-        return 'articles';
+        return '{{%articles}}';
     }
 
     /**
@@ -35,7 +36,7 @@ class Articles extends \yii\db\ActiveRecord
             [['module_id', 'status'], 'integer'],
             [['content'], 'string'],
             [['create_time', 'update_time'], 'safe'],
-            [['name', 'abstract'], 'string', 'max' => 255],
+            [['name', 'abstract'], 'string', 'max' => 1],
         ];
     }
 

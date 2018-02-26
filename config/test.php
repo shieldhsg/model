@@ -14,9 +14,13 @@ return [
         '@npm'   => '@vendor/npm-asset',
         '@mdm/admin' => '@vendor/mdmsoft/yii2-admin',
     ],  
-    'language' => 'en-US',
+    'language' => 'zh-CN',
+    'timeZone' => 'Asia/Shanghai',
     'components' => [
         'db' => $db,
+//        'cache'=> [
+//            'class'=>'yii\caching\fileCache'
+//        ],
         'mailer' => [
             'useFileTransport' => true,
         ],
@@ -57,26 +61,34 @@ return [
             'property'=>'123'
         ],
         'authManager'=>[
-            "class"=>'yii\rbac\DbManager'
-        ]
+            'class'=>'yii\rbac\DbManager',
+            'defaultRoles' => ['guest'],
+        ],
+        'i18n' => [
+            'translations' => [
+                '*' => [
+                    'class' => 'yii\i18n\PhpMessageSource'
+                ],
+        ],],
     ],
     'as access' => [
         'class' => 'mdm\admin\components\AccessControl',
         'allowActions' => [
             //这里是允许访问的action，不受权限控制
             //controller/action
-            '*'
+            'site/*'
         ]
     ],
     'params' => $params,
     'bootstrap' => ['gii'],
     'modules' =>[
-        'gii'=> ['class' => 'yii\gii\Module',
-        'allowedIPs' => ['*.*.*.*','127.0.0.1', '::1'],
-            ],
+        'gii'=> [
+            'class' => 'yii\gii\Module',
+            'allowedIPs' => ['*.*.*.*','127.0.0.1', '::1'],
+                ],
         'admin' => [
-    'class' => 'mdm\admin\Module',
-],
+            'class' => 'mdm\admin\Module',
+        ],
     ]
 ];
 
