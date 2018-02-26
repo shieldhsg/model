@@ -7,6 +7,7 @@ $db = require __DIR__ . '/db.php';
  */
 return [
     'id' => 'basic-tests',
+    'name' => '童趣教育',
     'basePath' => dirname(__DIR__),
     'vendorPath'=>__DIR__ . '/../../hsg.vendor/vendor/',
     'aliases' => [
@@ -62,7 +63,7 @@ return [
         ],
         'authManager'=>[
             'class'=>'yii\rbac\DbManager',
-            'defaultRoles' => ['guest'],
+//            'defaultRoles' => ['guest'],
         ],
         'i18n' => [
             'translations' => [
@@ -76,7 +77,8 @@ return [
         'allowActions' => [
             //这里是允许访问的action，不受权限控制
             //controller/action
-            'site/*'
+            'site/login',
+            'site/logout'
         ]
     ],
     'params' => $params,
