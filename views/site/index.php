@@ -2,16 +2,16 @@
 
 /* @var $this yii\web\View */
 
-$this->title = 'My Yii Application';
+$this->title = '童趣大本营';
 ?>
 <div class="site-index">
 
     <div class="jumbotron">
-        <h1>Congratulations!</h1>
+        <h1>欢迎进入综合管理系统</h1>
 
-        <p class="lead">You have successfully created your Yii-powered application.</p>
+        <p class="lead">您可以对在线订单，学生课程，网站内容等相关信息进行管理</p>
 
-        <p><a class="btn btn-lg btn-success" href="http://www.yiiframework.com">Get started with Yii</a></p>
+        <p><a class="btn btn-lg btn-success" href="http://www.hushengguo.com">童趣教育官网</a></p>
     </div>
 
     <div class="body-content">

@@ -13,7 +13,7 @@ $this->params['breadcrumbs'][] = $this->title;
 <div class="article-create">
 
     <h1><?= Html::encode($this->title) ?></h1>
-
+    <a href="https://packagist.org/packages/kriss/yii2-wang-editor" >测试例子</a>
     <?= $this->render('_form', [
         'model' => $model,
     ]) ?>
