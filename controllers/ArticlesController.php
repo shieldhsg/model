@@ -35,7 +35,7 @@ class ArticlesController extends Controller
      */
     public function actionIndex()
     {
-        $searchModel = new articlesSearch();
+        $searchModel = new ArticlesSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
         return $this->render('index', [

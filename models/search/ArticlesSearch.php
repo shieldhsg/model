@@ -10,7 +10,7 @@ use app\models\Articles;
 /**
  * articleSearch represents the model behind the search form of `app\models\article`.
  */
-class articlesSearch extends Articles
+class ArticlesSearch extends Articles
 {
     /**
      * @inheritdoc
