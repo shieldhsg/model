@@ -12,8 +12,6 @@ $this->params['breadcrumbs'][] = 'Update';
 ?>
 <div class="images-update">
 
-    <?= Html::img(['/file','id'=>$model->file_id]) ?>
-
     <?= $this->render('_form', [
         'model' => $model,
         'modules'=>$modules

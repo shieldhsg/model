@@ -1,7 +1,9 @@
 <?php
 namespace app\models;
 
+use mdm\upload\FileModel;
 use yii\base\Model;
+use yii\web\UploadedFile;
 
 /**
  * Signup form
@@ -10,6 +12,7 @@ class SignupForm extends Model
 {
     public $username;
     public $email;
+    public $file;
     public $password;
     public $created_at;
     public $updated_at;
@@ -47,16 +50,19 @@ class SignupForm extends Model
      *
      * @return true|false 添加成功或者添加失败
      */
-    public function signup()
+    public function signup($model)
     {
         // 调用validate方法对表单数据进行验证，验证规则参考上面的rules方法，如果不调用validate方法，那上面写的rules就完全是废的啦
         if (!$this->validate()) {
             return null;
         }
+        $file = UploadedFile::getInstance($model, 'file');
+        $fileModel = FileModel::saveAs($file,['uploadPath' => '../../uploads']);
         // 实现数据入库操作
         $user = new User();
         $user->username = $this->username;
         $user->email = $this->email;
+        $user->setAttribute('file_id',$fileModel->id);
         $user->created_at = $this->created_at;
         $user->updated_at = $this->updated_at;
         // 设置密码，密码肯定要加密，暂时我们还没有实现，继续阅读下去，我们在下面有实现

@@ -15,9 +15,12 @@
                 <?= $form->field($model,'username')->label('登陆名')->textInput(['autofocus'=>true])?>
                 <?= $form->field($model,'email')->label('邮箱')?>
                 <?= $form->field($model,'password')->label('密码')->passwordInput()?>
-                <div class="form-group">
+
+            <?= $form->field($model,'file')->fileInput()->label('选择头像'); ?>
+
+            <div class="form-group">
                     <?= \yii\helpers\Html::submitButton('添加',['class'=>'btn btn-primary','name'=>'signup-button']) ?>
-                </div>
+            </div>
             <?php \yii\bootstrap\ActiveForm::end() ?>
         </div>
     </div>

@@ -4,11 +4,13 @@ namespace app\controllers;
 
 use app\models\SignupForm;
 use app\models\User;
+use mdm\upload\FileModel;
 use Yii;
 use app\models\search\UserSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use yii\web\UploadedFile;
 
 /**
  * UserController implements the CRUD actions for UserBackend model.
@@ -48,7 +50,7 @@ class UserController extends Controller
     public function actionSignup()
     {
         $model = new SignupForm();
-        if($model->load(Yii::$app->request->post()) && $model->signup()){
+        if($model->load(Yii::$app->request->post()) && $model->signup($model)){
             return $this->redirect('index');
         }
         return $this->render('signup',['model'=>$model]);
@@ -128,7 +130,7 @@ class UserController extends Controller
      */
     protected function findModel($id)
     {
-        if (($model = UserBackend::findOne($id)) !== null) {
+        if (($model = User::findOne($id)) !== null) {
             return $model;
         }
 
