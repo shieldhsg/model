@@ -5,12 +5,12 @@ namespace app\models\search;
 use Yii;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
-use app\models\Articles;
+use app\models\Images;
 
 /**
- * articleSearch represents the model behind the search form of `app\models\article`.
+ * image represents the model behind the search form of `app\models\Images`.
  */
-class ArticlesSearch extends Articles
+class image extends Images
 {
     /**
      * @inheritdoc
@@ -18,8 +18,8 @@ class ArticlesSearch extends Articles
     public function rules()
     {
         return [
-            [['id', 'module_id', 'status'], 'integer'],
-            [['name', 'abstract', 'content', 'create_time', 'update_time'], 'safe'],
+            [['id', 'module_id', 'file_id'], 'integer'],
+            [['name', 'url', 'status', 'create_time', 'update_time'], 'safe'],
         ];
     }
 
@@ -41,7 +41,7 @@ class ArticlesSearch extends Articles
      */
     public function search($params)
     {
-        $query = Articles::find();
+        $query = Images::find();
 
         // add conditions that should always apply here
 
@@ -61,14 +61,15 @@ class ArticlesSearch extends Articles
         $query->andFilterWhere([
             'id' => $this->id,
             'module_id' => $this->module_id,
-            'status' => 1,
+            'file_id' => $this->file_id,
+            'status'=>1,
             'create_time' => $this->create_time,
             'update_time' => $this->update_time,
         ]);
 
         $query->andFilterWhere(['like', 'name', $this->name])
-            ->andFilterWhere(['like', 'abstract', $this->abstract])
-            ->andFilterWhere(['like', 'content', $this->content]);
+            ->andFilterWhere(['like', 'url', $this->url])
+            ->andFilterWhere(['like', 'status', $this->status]);
 
         return $dataProvider;
     }

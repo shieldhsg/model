@@ -12,22 +12,24 @@ use yii\widgets\ActiveForm;
 
     <?php $form = ActiveForm::begin(); ?>
 
-    <?= $form->field($model, 'module_id')->textInput() ?>
+    <?= $form->field($model, 'module_id')->dropDownList($modules,['prompt'=>'请选择','style'=>'width:120px']) ?>
 
     <?= $form->field($model, 'name')->textInput(['maxlength' => true]) ?>
 
     <?= $form->field($model, 'abstract')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'content')->textarea(['rows' => 6]) ?>
-
-    <?= $form->field($model, 'status')->textInput() ?>
-
-    <?= $form->field($model, 'create_time')->textInput() ?>
-
-    <?= $form->field($model, 'update_time')->textInput() ?>
+    <?= $form->field($model, 'content')->widget(\yii\redactor\widgets\Redactor::className(),[
+        'clientOptions' => [
+            'imageManagerJson' => ['/redactor/upload/image-json'],
+            'imageUpload' => ['/redactor/upload/image'],
+            'fileUpload' => ['/redactor/upload/file'],
+            'lang' => 'zh_cn',
+            'plugins' => ['clips','fontsize','fontcolor','imagemanager']
+        ]
+    ])  ?>
 
     <div class="form-group">
-        <?= Html::submitButton('Save', ['class' => 'btn btn-success']) ?>
+        <?= Html::submitButton('保存', ['class' => 'btn btn-success']) ?>
     </div>
 
     <?php ActiveForm::end(); ?>

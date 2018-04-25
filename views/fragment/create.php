@@ -4,13 +4,13 @@ use yii\helpers\Html;
 
 
 /* @var $this yii\web\View */
-/* @var $model app\models\Articles */
+/* @var $model app\models\fragment */
 
-$this->title = '添加文章';
-$this->params['breadcrumbs'][] = ['label' => 'Articles', 'url' => ['index']];
+$this->title = '添加碎片';
+$this->params['breadcrumbs'][] = ['label' => '添加碎片', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="article-create">
+<div class="fragment-create">
 
     <?= $this->render('_form', [
         'model' => $model,

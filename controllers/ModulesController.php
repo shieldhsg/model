@@ -2,20 +2,21 @@
 
 namespace app\controllers;
 
-use app\helpers\BaseHelper;
-use app\models\Modules;
 use Yii;
-use app\models\Articles;
-use app\models\search\ArticlesSearch;
+use app\models\modules;
+use app\models\search\modulesSearch as modulesSearch;
+use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 
 /**
- * 文章管理
+ * ModulesController implements the CRUD actions for modules model.
  */
-class ArticlesController extends BaseController
+class ModulesController extends Controller
 {
-
+    /**
+     * @inheritdoc
+     */
     public function behaviors()
     {
         return [
@@ -29,11 +30,12 @@ class ArticlesController extends BaseController
     }
 
     /**
-     * 获取文章列表
+     * Lists all modules models.
+     * @return mixed
      */
     public function actionIndex()
     {
-        $searchModel = new ArticlesSearch();
+        $searchModel = new modulesSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
         return $this->render('index', [
@@ -43,7 +45,10 @@ class ArticlesController extends BaseController
     }
 
     /**
-     * 展示指定文章
+     * Displays a single modules model.
+     * @param integer $id
+     * @return mixed
+     * @throws NotFoundHttpException if the model cannot be found
      */
     public function actionView($id)
     {
@@ -53,11 +58,13 @@ class ArticlesController extends BaseController
     }
 
     /**
-     * 新建文章
+     * Creates a new modules model.
+     * If creation is successful, the browser will be redirected to the 'view' page.
+     * @return mixed
      */
     public function actionCreate()
     {
-        $model = new Articles();
+        $model = new modules();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id]);
@@ -65,12 +72,15 @@ class ArticlesController extends BaseController
 
         return $this->render('create', [
             'model' => $model,
-            'modules'=>BaseHelper::findModule(1)
         ]);
     }
 
     /**
-     * 更新文章
+     * Updates an existing modules model.
+     * If update is successful, the browser will be redirected to the 'view' page.
+     * @param integer $id
+     * @return mixed
+     * @throws NotFoundHttpException if the model cannot be found
      */
     public function actionUpdate($id)
     {
@@ -82,31 +92,36 @@ class ArticlesController extends BaseController
 
         return $this->render('update', [
             'model' => $model,
-            'modules'=>BaseHelper::findModule(1)
         ]);
     }
 
     /**
-     * 删除某篇文章
+     * Deletes an existing modules model.
+     * If deletion is successful, the browser will be redirected to the 'index' page.
+     * @param integer $id
+     * @return mixed
+     * @throws NotFoundHttpException if the model cannot be found
      */
     public function actionDelete($id)
     {
-        $model = $this->findModel($id);
-        $model->status = 0;
-        $model->save();
+        $this->findModel($id)->delete();
+
         return $this->redirect(['index']);
     }
 
     /**
-     * 查找文章model
+     * Finds the modules model based on its primary key value.
+     * If the model is not found, a 404 HTTP exception will be thrown.
+     * @param integer $id
+     * @return modules the loaded model
+     * @throws NotFoundHttpException if the model cannot be found
      */
     protected function findModel($id)
     {
-        if (($model = Articles::findOne($id)) !== null) {
+        if (($model = modules::findOne($id)) !== null) {
             return $model;
         }
 
         throw new NotFoundHttpException('The requested page does not exist.');
     }
-
 }

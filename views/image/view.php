@@ -4,38 +4,40 @@ use yii\helpers\Html;
 use yii\widgets\DetailView;
 
 /* @var $this yii\web\View */
-/* @var $model app\models\Articles */
+/* @var $model app\models\Images */
 
 $this->title = $model->name;
-$this->params['breadcrumbs'][] = ['label' => '更新文章', 'url' => ['index']];
+$this->params['breadcrumbs'][] = ['label' => '查看图片', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="article-view">
-
+<div class="images-view">
 
     <p>
-        <?= Html::a('重新编辑', ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
+        <?= Html::a('更新', ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
         <?= Html::a('删除', ['delete', 'id' => $model->id], [
             'class' => 'btn btn-danger',
             'data' => [
-                'confirm' => '你确定要删除该文章吗',
+                'confirm' => '您确定要删除该图片吗?',
                 'method' => 'post',
             ],
         ]) ?>
     </p>
 
+    <?= Html::img(['/file','id'=>$model->file_id]) ?>
     <?= DetailView::widget([
         'model' => $model,
         'attributes' => [
-            'id',
+            'name',
             [
                 'attribute'=>'name',
                 'value'=>$model->modules->name,
 
                 'label'=>'图片所属模块'
-            ],            'name',
-            'abstract',
-            'content:html',
+            ],
+            'url:url',
+            'create_time',
+            'update_time',
+
         ],
     ]) ?>
 

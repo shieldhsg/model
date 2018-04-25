@@ -4,21 +4,20 @@ use yii\helpers\Html;
 use yii\widgets\DetailView;
 
 /* @var $this yii\web\View */
-/* @var $model app\models\Articles */
+/* @var $model app\models\fragment */
 
 $this->title = $model->name;
-$this->params['breadcrumbs'][] = ['label' => '更新文章', 'url' => ['index']];
+$this->params['breadcrumbs'][] = ['label' => 'Fragments', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="article-view">
-
+<div class="fragment-view">
 
     <p>
-        <?= Html::a('重新编辑', ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
+        <?= Html::a('更新', ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
         <?= Html::a('删除', ['delete', 'id' => $model->id], [
             'class' => 'btn btn-danger',
             'data' => [
-                'confirm' => '你确定要删除该文章吗',
+                'confirm' => '你确认要删除该碎片吗?',
                 'method' => 'post',
             ],
         ]) ?>
@@ -27,15 +26,16 @@ $this->params['breadcrumbs'][] = $this->title;
     <?= DetailView::widget([
         'model' => $model,
         'attributes' => [
-            'id',
+            'name',
             [
                 'attribute'=>'name',
                 'value'=>$model->modules->name,
 
                 'label'=>'图片所属模块'
-            ],            'name',
-            'abstract',
-            'content:html',
+            ],
+            'content:ntext',
+            'create_time',
+            'update_time',
         ],
     ]) ?>
 

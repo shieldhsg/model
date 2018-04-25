@@ -12,57 +12,60 @@ $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="article-index">
 
-    <h1><?= Html::encode($this->title) ?></h1>
-    <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
-
+    <p>该功能可以对网站中对文章进行管理</p>
     <p>
         <?=
-        Html::a('新建文章', ['create'], [
+        Html::a('添加文章', ['create'], [
             'class' => 'btn btn-success',
             'id' => 'create', // 按钮的id随意
-            'data-toggle' => 'modal', // 固定写法
-            'data-target' => '#operate-modal', // 等于modal begin中设定的参数id值
+            'target' => '_blank',
         ])
         ?>
     </p>
 
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
-        'filterModel' => $searchModel,
+        //'filterModel' => $searchModel,
         'columns' => [
-            ['class' => 'yii\grid\SerialColumn'],
-
+            //['class' => 'yii\grid\SerialColumn'],
             'id',
-            'module_id',
+            [
+                'attribute'=>'name',
+                'value'=>'modules.name',
+                'label'=>'文章所属模块'
+            ],
             'name',
             'abstract',
-            'content:ntext',
-            //'status',
-            //'create_time',
-            //'update_time',
 
             [
                 'class' => 'yii\grid\ActionColumn',
-                'template' => '{update}  {delete}',
+                'template' => '{view} {update}  {delete}',
                 'header' => '操作',
                 'buttons' => [
-                    'update' => function ($url, $model, $key) {
-                        return Html::a("栏目信息", $url, [
-                            'title' => '栏目信息',
+                    'view' => function ($url, $model, $key) {
+                        return Html::a("预览", $url, [
+                            'title' => '预览',
                             // btn-update 目标class
-                            'class' => 'btn btn-default btn-update',
+                            'class' => 'btn btn-primary',
                             // 固定写法
-                            'data-toggle' => 'modal',
-                            // 指向modal中begin设定的id
-                            'data-target' => '#operate-modal',
+                            'target' => '_self',
+                        ]);
+                    },
+                    'update' => function ($url, $model, $key) {
+                        return Html::a("编辑", $url, [
+                            'title' => '编辑',
+                            // btn-update 目标class
+                            'class' => 'btn btn-warning',
+                            // 固定写法
+                            'target' => '_blank',
                         ]);
                     },
                     'delete' => function ($url, $model, $key) {
                         return Html::a('删除', $url, [
                             'title' => '删除',
-                            'class' => 'btn btn-default',
+                            'class' => 'btn btn-danger',
                             'data' => [
-                                'confirm' => '确定要删除么?',
+                                'confirm' => '确定要删除该文章吗?',
                                 'method' => 'post',
                             ],
                         ]);
@@ -71,49 +74,4 @@ $this->params['breadcrumbs'][] = $this->title;
             ],
         ],
     ]); ?>
-
-    <?php
-    use yii\bootstrap\Modal;
-    Modal::begin([
-        'id' => 'operate-modal',
-        'header' => '<h4 class="modal-title"></h4>',
-    ]);
-    Modal::end();
-    ?>
-
-    <?php
-    use yii\helpers\Url;
-    // 异步请求的地址
-    $requestCreateUrl = Url::toRoute('create');
-    $js = <<<JS
-// 创建操作
-$('#create').on('click', function () {
-    $('.modal-title').html('创建栏目');
-    $.get('{$requestCreateUrl}',
-        function (data) {    
-            // 弹窗的主题渲染页面
-            $('.modal-body').html(data);
-        }  
-    );
-});
-JS;
-    $this->registerJs($js);
-    ?>
-
-    <?php
-    // 更新
-    $requestUpdateUrl = Url::toRoute('update');
-    $js = <<<JS
-    // 更新操作
-    $('.btn-update').on('click', function () {
-        $('.modal-title').html('栏目信息');
-        $.get('{$requestUpdateUrl}', { id: $(this).closest('tr').data('key') },
-            function (data) {
-                $('.modal-body').html(data);
-            }  
-        );
-    });
-JS;
-    $this->registerJs($js);
-    ?>
 </div>

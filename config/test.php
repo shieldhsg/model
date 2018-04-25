@@ -17,6 +17,9 @@ return [
     ],  
     'language' => 'zh-CN',
     'timeZone' => 'Asia/Shanghai',
+    'controllerMap' => [
+        'file' => 'mdm\\upload\\FileController', // use to show or download file
+    ],
     'components' => [
         'db' => $db,
 //        'cache'=> [
@@ -72,26 +75,33 @@ return [
                 ],
         ],],
     ],
-    'as access' => [
-        'class' => 'mdm\admin\components\AccessControl',
-        'allowActions' => [
-            //这里是允许访问的action，不受权限控制
-            //controller/action
-            'site/login',
-            'site/logout'
-        ]
-    ],
+//    'as access' => [
+//        'class' => 'mdm\admin\components\AccessControl',
+//        'allowActions' => [
+//            //这里是允许访问的action，不受权限控制
+//            //controller/action
+//            'site/login',
+//            'site/logout',
+//            'gii'
+//        ]
+//    ],
     'params' => $params,
     'bootstrap' => ['gii'],
     'modules' =>[
+        'redactor' => [
+            'class' => 'yii\redactor\RedactorModule',
+            'uploadDir' => realpath('../../uploads/'),
+            'uploadUrl' => 'http://test.hushengguo.com/uploads',
+            'imageAllowExtensions'=>['jpg','jpeg','png','gif']
+        ],
         'gii'=> [
             'class' => 'yii\gii\Module',
             'allowedIPs' => ['*.*.*.*','127.0.0.1', '::1'],
-                ],
+        ],
         'admin' => [
             'class' => 'mdm\admin\Module',
         ],
-    ]
+    ],
 ];
 
 
