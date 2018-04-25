@@ -51,7 +51,7 @@ body{
 
         <div class="row">
             <div class="col-xs-8">
-                <?= $form->field($model, '记住我')->checkbox() ?>
+                <?= $form->field($model, 'rememberMe')->checkbox()->label('记住我')?>
             </div>
             <!-- /.col -->
             <div class="col-xs-4">
