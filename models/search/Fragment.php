@@ -5,7 +5,7 @@ namespace app\models\search;
 use Yii;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
-use app\models\fragment as fragmentModel;
+use app\models\Fragment as fragmentModel;
 
 /**
  * fragment represents the model behind the search form of `app\models\fragment`.

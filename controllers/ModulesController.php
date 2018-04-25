@@ -2,9 +2,9 @@
 
 namespace app\controllers;
 
+use app\models\search\ModulesSearch;
 use Yii;
 use app\models\modules;
-use app\models\search\modulesSearch as modulesSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
@@ -35,7 +35,7 @@ class ModulesController extends Controller
      */
     public function actionIndex()
     {
-        $searchModel = new modulesSearch();
+        $searchModel = new ModulesSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
         return $this->render('index', [
