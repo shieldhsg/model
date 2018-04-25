@@ -5,7 +5,6 @@ namespace app\controllers;
 use app\helpers\BaseHelper;
 use Yii;
 use app\models\fragment;
-use app\models\search\fragment as fragmentSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
@@ -36,7 +35,7 @@ class FragmentController extends Controller
      */
     public function actionIndex()
     {
-        $searchModel = new fragmentSearch();
+        $searchModel = new Fragment();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
         return $this->render('index', [
@@ -65,7 +64,7 @@ class FragmentController extends Controller
      */
     public function actionCreate()
     {
-        $model = new fragment();
+        $model = new Fragment();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id]);
