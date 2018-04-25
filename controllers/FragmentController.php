@@ -3,6 +3,7 @@
 namespace app\controllers;
 
 use app\helpers\BaseHelper;
+use app\models\search\fragmentSearch;
 use Yii;
 use app\models\fragment;
 use yii\web\Controller;
@@ -35,7 +36,7 @@ class FragmentController extends Controller
      */
     public function actionIndex()
     {
-        $searchModel = new Fragment();
+        $searchModel = new fragmentSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
         return $this->render('index', [

@@ -10,7 +10,7 @@ use app\models\Fragment as fragmentModel;
 /**
  * fragment represents the model behind the search form of `app\models\fragment`.
  */
-class fragment extends fragmentModel
+class fragmentSearch extends fragmentModel
 {
     /**
      * @inheritdoc
