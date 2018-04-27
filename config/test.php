@@ -82,6 +82,7 @@ return [
             //controller/action
             'site/login',
             'file/*',
+            'redactor/*',
             'site/logout',
             'gii/*'
         ]
