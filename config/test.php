@@ -75,17 +75,17 @@ return [
                 ],
         ],],
     ],
-    'as access' => [
-        'class' => 'mdm\admin\components\AccessControl',
-        'allowActions' => [
-            //这里是允许访问的action，不受权限控制
-            //controller/action
-            'site/login',
-            'file/*',
-            'site/logout',
-            'gii/*'
-        ]
-    ],
+//    'as access' => [
+//        'class' => 'mdm\admin\components\AccessControl',
+//        'allowActions' => [
+//            //这里是允许访问的action，不受权限控制
+//            //controller/action
+//            'site/login',
+//            'file/*',
+//            'site/logout',
+//            'gii/*'
+//        ]
+//    ],
     'params' => $params,
     'bootstrap' => ['gii'],
     'modules' =>[
