@@ -92,7 +92,7 @@ return [
         'redactor' => [
             'class' => 'yii\redactor\RedactorModule',
             'uploadDir' => realpath('../../uploads/'),
-            'uploadUrl' => 'http://test.hushengguo.com/uploads',
+            'uploadUrl' => 'http://tms.hushengguo.com/uploads',
             'imageAllowExtensions'=>['jpg','jpeg','png','gif']
         ],
         'gii'=> [
