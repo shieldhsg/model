@@ -5,7 +5,7 @@ namespace app\controllers;
 use app\helpers\BaseHelper;
 use app\models\search\fragmentSearch;
 use Yii;
-use app\models\fragment;
+use app\models\Fragment;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
